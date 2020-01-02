@@ -1,0 +1,14 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: docker
+  image: plugins/docker
+  settings:
+    registry: registry.learnindialearn.in:5000
+    username: docker
+    password: yogesh12
+    repo: registry.learnindialearn.in:5000/mongodb-grafana-plugin
+    insecure: true
+    auto_tag: true
