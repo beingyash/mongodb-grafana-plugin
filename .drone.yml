@@ -12,3 +12,17 @@ steps:
     repo: registry.learnindialearn.in:5000/mongodb-grafana-plugin
     insecure: true
     auto_tag: true
+    
+- name: deploy
+  image: appleboy/drone-ssh
+  settings:
+    host: lil-utils.learnindialearn.in
+    username: root
+    port: 22
+    command_timeout: 10m
+    key:
+      from_secret: ssh_key
+    script:
+      - cd /root/utils/lilmon/monitoring && docker-compose up -d mongodb-grafana-plugin
+  when:
+    branch: ${DRONE_BRANCH}
